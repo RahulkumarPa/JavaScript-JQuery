@@ -1,0 +1,79 @@
+<!--
+Name:Rahulkumar Patel
+Student Number:100680118
+
+ref: jquery link: https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js
+
+-->
+
+<html>
+    <head>
+        <title>WEBD6201 TEST2 - jQuery</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js">
+       </script>
+       <link rel="stylesheet" type="text/css" href="./TEST2_WEBD6201_STYLE.css">
+    </head>
+    
+    <body>
+        <header>
+            <h1>jQuery To-Do List</h1>
+        </header>
+        
+        <section>
+            <ul id="todolist">
+              <li>Finsh jQuery Test<span class="close">&#x2716;</span></li>
+              <li>Graduate <span class="close">&#x2716;</span></li>
+            </ul>
+            
+            <form>
+                <input type="text" id="txtNewToDo" placeholder="New To-Do Item..." autocomplete="off">
+                <div class="btn" id="addNewToDo">+</div>
+            </form>
+            
+            <div id="lblError">Please Type Something To Do!</div>
+        </section>
+        
+       
+        <script>
+             $(document).ready(function(){
+
+                $("#txtNewToDo").focus();
+                $('li').on("mouseover",function(){
+
+                    $(this).find("span").show();
+                });
+
+               $('li').on("mouseout",function(){
+                $(this).find("span").hide();
+               });
+
+                $('span').on("click",function(){
+                $(this).parent().remove();
+                });
+
+                $('#addNewToDo').on("click",function(){
+                    var userInput = $("#txtNewToDo").val();
+                     if(userInput === "")
+                    {
+                      $("#lblError").slideDown(1000);
+                      $("#txtNewToDo").focus();
+                   }
+                   else
+                   {
+                       $("#txtNewToDo").val(" ");
+                       
+                       $("#lblError").slideUp(1000);
+                       $("#txtNewToDo").focus();
+                       $("form").submit(function(){
+                         $('li').show().addClass('checked');             
+                            });
+                   }
+
+                });
+  
+
+           });
+        </script>
+    </body>
+</html>

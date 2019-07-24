@@ -1,0 +1,214 @@
+<!--
+Name:
+Student Number:
+
+ref: jquery link: https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js
+
+-->
+
+<html>
+    <head>
+        <title>Email List</title>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <style type="text/css">
+        	*{
+			    margin: 0; 
+			    padding: 0; 
+			    font-family: Arial; 
+			    box-sizing: border-box
+			}
+
+			body{
+			    text-align: center;
+			}
+
+			header{
+			    padding: 50px; 
+			    color: black; 
+			    font-size: 20pt
+			}
+
+			section{
+			    width: 700px;
+			    margin: 0 auto;
+			}
+
+			ul {
+			    margin: 0;
+			    padding: 0;
+			    list-style: none;
+			    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+			}
+
+			ul li {
+			    cursor: pointer;
+			    position: relative;
+			    padding: 12px 8px 12px 40px;
+			    background: #FF6D1F;
+			    font-size: 18px;
+			    transition: 0.2s;
+			    text-align: left;
+			    user-select: none;
+			}
+
+			ul li:nth-child(odd) {
+			    background: #FA5B0F;
+			}
+
+			ul li:hover {
+			    background: #FF822E;
+			}
+
+			ul li.checked {
+			    background: #FF822E;
+			    color: #fff;
+			    text-decoration: line-through;
+			}
+
+			ul li.checked::before {
+			    content: '';
+			    position: absolute;
+			    border-color: #fff;
+			    border-style: solid;
+			    border-width: 0 2px 2px 0;
+			    top: 10px;
+			    left: 16px;
+			    transform: rotate(45deg);
+			    height: 15px;
+			    width: 7px;
+			}
+
+			.close {
+			    position: absolute;
+			    right: 0;
+			    top: 0;
+			    padding: 12px 16px 12px 16px;
+			    display: none;
+			    background-color: #f44336;
+
+			}
+
+			.close:hover {
+			    color: white;
+			}
+
+			form{
+			    padding: 0;
+			    margin-top: 20px;
+			    width: 100%;
+			    overflow: hidden;
+			}
+
+			input{
+			    height: 56px;
+			    line-height: 56px;
+			    margin-right: 0;
+			    display: inline-block;
+			    float: left;
+			    width: 90%;
+			    font-size: 18px;
+			    padding: 12px 8px 12px 40px;
+			    outline: 0;
+			}
+
+			.btn{
+			    display: inline-block;
+			    background-color: green;
+			    width: 10%;
+			    padding: 9.5px;
+			    font-size: 32px;
+			    cursor: pointer;
+			    background-color: #FA5B0F;
+			}
+
+			.btn:hover{
+			    color: white;
+			    background-color: #ff931e;
+
+			}
+
+			#lblError{
+			    background-color: #000;
+			    color: white;
+			    height: 56px;
+			    line-height: 56px;
+			    display: none;
+			}
+        </style>
+    </head>
+    
+    <body>
+        <header>
+            <h1>Email List</h1>
+        </header>
+        
+        <section>
+            <ul id="emailList">
+              <li>austin.garrod@durhamcollege.ca<span class="close">&#x2716;</span></li>
+              <li>austin.garrod@dcmail.ca<span class="close">&#x2716;</span></li>
+            </ul>
+            
+            <form>
+                <input type="text" id="txtNewEmail" placeholder="Add New Email" autocomplete="off">
+                <div class="btn" id="addNewEmail">+</div>
+            </form>
+            
+            <div id="lblError">Please enter an email address!</div>
+        </section>
+        
+        <script>
+
+        	$(document).ready(function(){
+               
+               //for id we use# and for class .
+               $("#txtNewEmail").focus();
+
+               $('li').on("mouseover",function(){
+               	$(this).find("span").show();
+               });
+
+               $('li').on("mouseout",function(){
+               	$(this).find("span").hide();
+               });
+               
+               $('span').on("click",function(){
+               	$(this).parent().remove();
+               });
+
+               $('#addNewEmail').on("click",function(){
+
+                  var userInput = $("#txtNewEmail").val();
+                  if(userInput === "")
+                  {
+                     $("#lblError").fadeIn(1000);
+                  }
+                  else
+                  {
+                  	$("#lblError").fadeOut(1000);
+
+                  	$('#emailList').append($(<li>,{text: "userInput"}))   //append use to add at the last
+                    $('#emailList').children().last().append($("<span>",
+                    	{class:"close",html:"&#x2716"}))              
+    
+                     $('li').on("mouseover",function(){
+               	     $(this).find("span").show();
+                      });
+
+              		 $('li').on("mouseout",function(){
+               		$(this).find("span").hide();
+              		 });
+               
+              		 $('span').on("click",function(){
+               		$(this).parent().remove();
+               			});
+              		  $("#txtNewEmail").val("").focus();
+                  }
+               });
+
+
+
+        	});
+            
+        </script>
+    </body>
+</html>

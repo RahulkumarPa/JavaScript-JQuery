@@ -1,0 +1,104 @@
+<!-- 
+	 Name: Rahulkumar Patel (1006860118) 
+     File:lab4_q1.html
+     Last Modified: 13 Feb 2019 
+     CRN: 6201-06
+     Description:This is a Fourth Lab question-1.
+ -->
+<!DOCTYPE html>
+<html>
+	<head>
+       <title>Webd-clientside_Lab4</title>
+	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	   <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+	   <link  href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet"></script>
+       <script src="./users.js" ></script>
+	</head>
+
+	<body>
+
+		<table id="table">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>Gender</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+
+	</body>
+
+	<script>
+
+		$(document).ready(function() {
+
+               // $('tbody').append(($('<tr></tr>',{id:"hi"})));
+               // $('hi').append(($('<td></td>',{text:"hi"})));
+               //var tbd = document.getElementsByTagName('tbody');
+            //   for(var j= 0 ;j <users.length; j++)
+            //   {
+            //     var ntr = document.createElement("tr")+'j';
+            //     ntr.setAttribute("class", "democlass");
+            //     $('tbody').append(($('<tr></tr>',{id:"hi",class:""})));
+            //     for(var i = 0 ; i<5; i++)
+            //     {
+            //        var td = document.createElement("td")+'i'; 
+
+            //     }
+            // }
+            
+            // for(var j= 0 ;j <10; j++)
+            //  {
+            //   $("tbody").append($("<tr>"+[j]+'',{class:"close"}));
+            //   for(var i =0 ; i<5; i++){
+            //   $(".close").append($("<td>"+[i]+'',{text:"ose"}));
+
+             
+            //     }
+            //  mytable();
+			for(var i = 1 ; i <= users.length ; i++)
+			{
+				//var table = document.getElementById("table");
+				$("tbody").append($("<tr>",{id : "tr"+i}))
+				$("#tr"+i).append($("<td>",{text: i}))
+				$("#tr"+i).append($("<td>",{text:users[i-1].first_name}))
+				$("#tr"+i).append($("<td>",{text:users[i-1].last_name}))
+				$("#tr"+i).append($("<td>",{text:users[i-1].email}))
+				$("#tr"+i).append($("<td>",{text:users[i-1].gender}))
+			}
+		
+             $('#table').DataTable();
+		});
+		// function mytable()
+  //       {
+            
+  //           for(var i=0; i<users.length; i++)
+  //           {
+  //               var tr = document.createElement('tr');
+  //               for(var j=0; j<5; j++)
+  //               {
+
+  //                 var td = document.createElement('td');
+  //                 var cellText = document.createTextNode(data);
+  //                // td.innerHTML = users.map(data);
+  //                 td.appendChild(cellText);
+  //                 tr.appendChild(td);
+  //               }
+              
+
+  //           }    
+             
+  //       }
+  //       var data = [];
+  //       data = users.map(function(i){
+  //      	data.push({first_name:users[i].first_name,users[i].});
+ 
+	</script>
+
+</html>

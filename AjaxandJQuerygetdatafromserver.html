@@ -1,0 +1,121 @@
+<!--
+Name: Rahulkumar Patel
+Student Number:100680118
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	   <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <title>Lab_5_Question_2</title>
+	</head>
+
+	<body>
+    <form id="form">
+		First name:<br>
+		<input type="text" name="firstname" id= "firstname">
+		<br>
+		Last name:<br>
+		<input type="text" name="lastname"  id="lastname">
+		<br><br>
+		<!-- <input type="submit" name="ADD"  id="button"> -->
+    <button type="button" id="button">Add</button>
+   </form>
+	</body>
+
+	<script>
+
+      $(document).ready(function(){
+
+            $("#button").click(function(){
+            	var firstname =  document.getElementById("firstname").value;
+            	var lastname =  document.getElementById("lastname").value;
+                
+
+		        $.post("https://reqres.in/api/users",
+		        	{
+		        	    "first_name": firstname ,
+		        		"last_name" : lastname,
+		        		"avatar" :"https://source.unsplash.com/random/128x128" 	  
+		        	}, 
+		        	function(reply)
+		        	{
+			        	var avatar = reply.avatar;
+		             	var first_name = reply.first_name;
+		             	var last_name = reply.last_name;
+		             //	alert(first_name);
+			        	
+			        	$("body").append($("<div>",{class : "container"}));
+	                    $(".container").append($("<div>",{class : "user"}));
+	                    $(".user").last().append($("<div>",{class : "profile_picture"}));
+	                    $(".profile_picture").last().append($("<img>",{src :avatar }));
+	                    $(".user").append($("<div>",{class : "name"}));
+	                    $(".name").last().append($("<h1>",{text :first_name +" "+ last_name } ));
+		            });
+		        	$("#form").reset();
+		      });
+
+      	   $.get("https://reqres.in/api/users", function(retun){
+             for(var i =0 ; i<retun.data.length; i++)
+             {
+             	
+             	var avatar = retun.data[i].avatar;
+             	var first_name = retun.data[i].first_name;
+             	var last_name = retun.data[i].last_name;
+
+                $("body").eq(i).append($("<div>",{class : "container"}));
+                $(".container").append($("<div>",{class : "user"}));
+                $(".user").eq(i).append($("<div>",{class : "profile_picture"}));
+                $(".profile_picture").eq(i).append($("<img>",{src :avatar }));
+                $(".user").eq(i).append($("<div>",{class : "name"}));
+                $(".name").eq(i).append($("<h1>",{text :first_name +" "+ last_name } ));
+             }
+            });
+
+
+      });
+	
+	</script>
+
+       
+
+
+
+
+
+	<!-- STYLES GO HERE -->
+
+	<style>
+		.body, h1, h2, h3, h4, h5, h6, p {
+			font-family: 'Montserrat', sans-serif;
+		}
+		.container {
+			margin: auto 10%;
+		}
+		.user {
+			background: #efefef;
+		    box-shadow: 0px 6px 13px -7px black;
+		    border-radius: 5px;
+		    padding-right: 20px;
+	        display: flex;
+	        margin: 20px 0;
+		    align-items: center;
+		    border-top-left-radius: 65px;
+		    border-bottom-left-radius: 65px;
+		}
+		.profile_picture {
+			height: 128px;
+		}
+		.profile_picture > img {
+			border-radius: 50%;
+		}
+		.user > .name {
+			margin-left: 50px;
+			display: inline-block;
+		}
+	</style>
+
+</html>

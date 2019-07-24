@@ -1,0 +1,109 @@
+<!-- 
+	 Name: Rahulkumar Patel (1006860118) 
+     File:lab3_q2.html
+     Last Modified: 06 Feb 2019 
+     CRN: 6201-06
+     Description:This is a Third Lab question-2.
+ -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Webd-clientside_Lab3</title>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		
+	</head>
+	<body>
+
+		<style>
+			body { display: flex; justify-content: center; align-items: center;}
+			#table td{
+				padding:25px;
+				font-size: 25px;
+				text-align: center;
+			}
+			#table th { font-size: 30px; padding:25px}
+			div {display: block;}
+		</style>
+
+		<div>
+			<table border="1" id="table">  
+				<tr class="class1" >
+					<th>Year</th>  
+					<th>Savings</th>  
+				</tr>  
+				<tr class="class2">  
+					<td>2014</td>  
+					<td>$10000</td>
+				</tr>  
+				<tr class="class3">  
+					<td>2015</td>  
+					<td>$8000</td>  
+				</tr>  
+				<tr class="class4">  
+					<td>2016</td>  
+					<td>$9000</td>  
+				</tr>  
+			</table> 
+
+			<p>  
+				<input id="button1" type="button" value="Click to remove all rows except first one"/>
+			</p>
+		</div>
+        
+        <script >
+        	
+              //focus on the document
+              $(document).ready(function()
+              {
+			  	$("#button1").click(function(){
+			    $(".class2,.class3,.class4").remove();   //remove() to hide the classes
+			  });
+
+                	$(".class1").click(function(){
+                		$("#a").remove();
+             	    $(".class1").last().append("<td id='a'>class1</td>");
+           			 });
+
+            		$(".class2").click(function(){
+            			$("#b").remove();
+              		 $(".class2").append("<td id='b'>clas2</td>");
+          			  });
+
+           			$(".class3").click(function(){
+           				$("#c").remove();
+              		 $(".class3").append("<td id='c'>class3</td>");
+           			 });
+
+           			 $(".class4").click(function(){
+           			 	$("#d").remove();
+              		 $(".class4").append("<td id='d'>class4</td>");
+           			 });              
+			 });
+             
+
+    //         $(document).ready(function()
+    //           {
+			 //  	$("#button1").click(function(){
+			 //    $(".class2,.class3,.class4").remove();   //hide() to hide the classes
+			 //  });
+
+    //             	for(var i = 1 ;i<5; i++)
+    //             	{
+    //             		$(".class"+i).click(function(){
+    //          	    
+    //        			 });
+    //             	}
+			 // });
+          
+            
+
+           
+            
+            	
+        	  
+        </script>
+	</body>
+
+</html>
+
+

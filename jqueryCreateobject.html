@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<!-- head stuff goes here -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" ></script>
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" >
+
+		<style>
+			.orange {
+				background-color: orange;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<ul id="list">
+			<li id="one" class="hot">fresh figs</li>
+			<li id="two" class="hot">pine nuts</li>
+			<li id="three" class="hot">honey</li>
+			<li id="four">balsamic vinegar</li>
+		</ul>
+
+		<button id="button1">Click me</button>
+
+	</body>
+
+	<script>
+
+	$(document).ready(function(){
+
+		var $first = $('ul#list').children().last().prev(); //selects honey
+        
+        
+		 console.log($first[0]);
+		 console.log($first[0]);
+		 console.log($first.text()); // object
+		 console.log($first.html()); //
+        
+		$('li').hide().fadeIn(1500);
+        
+        
+//		document.getElementById("two").innerHTML = $first.text();
+        $("#two").html($first.text());
+
+		$('#button1').click(function(){
+			$('li').after($('<li>', {class: "orange", text: "hello", id: "world"}))
+		})
+
+	})
+	
+	</script>
+
+</html>

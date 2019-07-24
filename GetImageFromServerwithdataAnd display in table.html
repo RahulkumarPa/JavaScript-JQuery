@@ -1,0 +1,149 @@
+<!--
+Name: Rahulkumar Patel
+Student Number:100680118
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<!-- head stuff goes here -->
+     
+	    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/> 
+	    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	    
+	   
+	    <title>Lab_6</title>
+
+	    <style type="text/css">
+        body
+        {
+          background-color: white;
+		  border-radius: 2px;
+		  border: 2px solid black;
+		  width: 98%;
+		  height: 700px;
+        }
+        div.left 
+        {
+		  float: left;
+		  margin-top: 5%;
+		  margin-left:5%; 
+		  height: 450px;
+          width: 40%;
+		  border-radius: 2px;
+		  /*border: 2px solid black;*/
+		}
+		.leftI
+		{
+			vertical-align: middle;
+			margin-top: 1%;
+		    margin-left:2%;
+			height: 100px;
+			width: 80px;
+		}
+
+		div.right
+        {
+		  float: right;
+		  height: 450px;
+          width: 50%;
+          margin-top: -450px;
+          margin-left:650px;
+          margin-right: 60px; 
+          background-color: white;
+		  border-radius: 2px;
+		  border: 2px solid black;
+		}
+		.rightI
+		{
+			vertical-align: middle;
+			margin-top: 1%;
+		    margin-left:2%;
+			height: 100px;
+			width: 80px;
+		}
+
+		table 
+		{
+		  border-collapse: collapse;
+		  width: 100%;
+		}
+
+		th, td 
+		{
+		  text-align: left;
+		  padding: 10px;
+		}
+
+
+		th {
+		  background-color: #808080;
+		  color: white;
+         }
+	    </style>
+
+	</head>
+
+	<body>
+
+		<!-- HTML content goes here -->
+		<div class="polo">
+		   <div class="left" id="left"></div>
+		   <div class="right" id="right"></div>
+         </div>
+         <table id="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>FileName</th>
+					<th>Author</th>
+					<th>URL</th>
+				<tbody></tbody>
+				</tr>
+			</thead>
+		</table>
+	</body>
+
+	<script>
+
+		$(document).ready(function() {
+           var pictures = [];
+           $.get("https://picsum.photos/list",function(pic)
+           {
+             for(var i =0; i<20; i++)
+             {
+
+               var pictureIds = Math.floor(Math.random() * (pic.length));
+               	pictures.push(pic[pictureIds]);
+             }
+
+
+             for(var j =0; j<20; j++)
+             {
+             	$('#left').append($("<img>",{class:"leftI", id:j ,src:"https://picsum.photos/g/200/300="+pictures[j].id}));
+             }
+
+             
+             $(".leftI").draggable({cursor: "crosshair"});
+             
+
+             $(".right").droppable({accept:".leftI", class:"rightI", drop: function( event, ui)
+                 { 
+                 	$(ui.draggable).detach().css({top: 0, left: 0}).appendTo($(this));
+                    var put = ui.draggable;
+                    var imageid = put.attr("id");
+                    console.log(imageid);
+                    var table = $('#table').DataTable(); 
+                    var row ="<tr><td>" +pictures[imageid].id+"</td><td>"+pictures[imageid].filename+"</td><td>"+ pictures[imageid].author+"</td><td>"+'https://picsum.photos/200/200?image='+pictures[imageid].id+"</td></tr>";
+                     $("tbody").append(row);
+                 }
+                 })
+           }) //for a get
+
+		})
+	
+	</script>
+
+</html>

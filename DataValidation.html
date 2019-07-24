@@ -1,0 +1,174 @@
+<!-- 
+	 Name: Rahulkumar Patel (1006860118) 
+     File:lab2_q2.html
+     Last Modified:22 jan 2019 
+     CRN: 6201-06
+     Description:This is a Second Lab question-2.
+
+ -->
+ <html>
+<head>	
+   <!-- head stuff goes here -->
+	<title>Webd-clientside_Lab2</title>
+	<style>
+		body { display: flex; justify-content: center; align-items: center; height: 80vh;}
+		#myForm td{
+			height: 50px;
+			width: 300px;
+			font-size: 25px;
+			text-align: center;
+		}
+
+		table {
+		    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+		    border-collapse: collapse;
+		    width: 100%;
+		}
+
+		table td, #customers th {
+		    border: 1px solid #ddd;
+		    padding: 8px;
+		}
+
+		table tr:nth-child(even){background-color: #f2f2f2;}
+
+		table th {
+		    padding-top: 12px;
+		    padding-bottom: 12px;
+		    text-align: left;
+		    background-color: #4CAF50;
+		    color: white;
+		}
+
+		input[type=text] {    
+			width: 100%;
+		    padding: 12px 20px;
+		    margin: 8px 0;
+		    box-sizing: border-box;
+		    border: none;
+		    background-color: rgba(0,0,0,0);
+		    color: #3CBC8D;
+		    border-bottom: solid 3px #a1a1a1;
+		    font-size: 22px;
+		}
+
+		input[type=text]:focus {
+		    border-bottom: solid 3px #3CBC8D;
+		    outline: none;
+		}
+
+		select {
+			padding: 10px;
+			font-size: 20px;
+		}
+
+	    .button {
+		    background-color: #4CAF50; /* Green */
+		    border: none;
+		    color: white;
+		    padding: 15px 32px;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 16px;
+		    margin: 4px 2px;
+		    cursor: pointer;
+		}
+
+		.button {
+		    -webkit-transition-duration: 0.4s; /* Safari */
+		    transition-duration: 0.4s;
+		}
+
+		#btnSubmit:hover {
+			background-color: #1a8648;
+		}
+
+    </style>
+
+</head>
+	<body>
+		<form method="post" name="myForm" id="myForm" onsubmit="return validateForm();">
+			<table cellspacing="2" cellpadding="2" border="1">
+
+				<tr>
+					<td align="right" id="nameLabel">Name</td>
+					<td><input type="text" name="Name" /></td>
+				</tr>
+
+				<tr>
+					<td align="right" id="emailLabel">EMail</td>
+					<td><input type="text" name="EMail" /></td>
+				</tr>
+
+				<tr>
+					<td align="right" id="countryLabel">Country</td>
+					<td>
+						<select name="Country">
+							<option value="-1" selected>[choose yours]</option>
+							<option value="1">USA</option>
+							<option value="2">UK</option>
+							<option value="3">INDIA</option>
+							<option value="4">CANADA</option>
+						</select>
+					</td>
+				</tr>
+
+				<tr>
+					<td align="right"></td>
+					<td><input name="submit" type="submit" value="Submit" class="button" id="btnSubmit"/></td>
+				</tr>
+
+			</table>
+		</form>
+		<script type="text/javascript">
+			
+			//creare two objects with deferent key and values
+			errorResponses= { "name": " Invalid Name Entered" ,
+			                   "email":"Invalid Email Entered",
+			                    "Country":"Invalid Country Entered"};
+
+			goodResponses = { "done" :"you entered valid data thank you. " };
+            
+			
+            //create a function to validate data in the form
+			function validateForm()
+			{
+				var f=document.forms['myForm'];  //get a form
+				 
+				 if(f.Name.value.length > 3)  //check length of name
+			       {
+				       	if(f.EMail.value.length > 7)    //check length of email
+				         {  
+				       	      if(f.Country.value >0 )    // check value for ountry
+						       {
+						       	return true;
+						       	var final = goodResponses.done;
+						       	aleart(final);
+							   }
+							  else
+							  {
+							  	 var em2 = errorResponses.Country;
+							     document.getElementById('countryLabel').innerHTML =em2;
+							     return false;
+							  }
+						  }
+					    else
+						 {
+						   var em1 = errorResponses.email;
+						   document.getElementById('emailLabel').innerHTML =em1;
+						   return false;
+						 }
+				       	
+					}
+				  else
+				  {
+				  	
+				    var em = errorResponses.name;
+				    document.getElementById('nameLabel').innerHTML =em;
+				    return false;
+				  }		
+			}
+		</script>	
+    </body>
+</html>

@@ -1,0 +1,88 @@
+<!-- 
+	 Name: Rahulkumar Patel (1006860118) 
+     File:lab3_q1.html
+     Last Modified: 06 Feb 2019 
+     CRN: 6201-06
+     Description:This is a Third Lab question-1.
+ -->
+
+<html>
+<head>
+	<title>Webd-clientside_Lab3</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<style>
+
+          #password{
+              width: 150px;
+              align: center; 
+              background: green;
+            
+          }
+
+        </style>
+</head>
+<body>
+	<form id="form">
+		<input type="password" id="password"   minlength="9" required>
+	</form>
+	<script >
+
+		 $(document).ready(function(){
+       //add keypup evet 
+         $('#password').on("keyup",function(){
+
+                 
+                  var userInput = $("#password").val();  //get the userinput value
+                  if(userInput.length < 9)    //if user input length less than 9
+                  {
+
+                    $("p").remove();     //remove previous peragraph
+                    $("#form").append($("<p>",{text : "please,Enter 9 characters"}))
+                    $("button").remove();  
+    
+                  }
+                  else   // if user input length is more than 9
+                  {
+                  	 $("button").remove();
+                  	$('#form').append($('<button>',{text:"submit", value:"Submit"}));  //create button
+                  	$("p").remove();  //remove peragraph
+
+                  }
+	   });
+     });
+		//created variable and get input tag and add their EventListner
+		//keypress event with function checkPass
+		// var input = document.getElementById('password');
+		// input.addEventListener("keypress",function(){   
+		// 	checkPass();
+		// });
+
+		// function checkPass()
+	 //     {
+	 //   	   var txt = document.getElementById('password').value;
+	 //   	   if(txt.length < 9)
+	 //   	   {
+	 //   	   	  //  var a = document.createElement("span"); 
+	 //   	   	  //  a.innerText = 'password must be more then 9 charactera';
+	 //   	   	  //  var b = document.getElementsByTagName("form");
+	 //   	   	  //  //b.appendChild(a);
+	 //   	   	  // btn.hide();
+	 //   	   	  alert('hi');
+	 //   	   }
+	 //       else
+	 //       {
+	 //        	$(document).ready(function(){
+		//        $("#password").after('<input type="submit" value="Submit">').fadeIn();
+		//          });
+		       
+	 //   	   }
+
+	 //    }
+
+	 // 
+	  
+       
+   
+	</script>
+</body>
+</html>
